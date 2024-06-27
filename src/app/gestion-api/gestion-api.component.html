@@ -1,0 +1,197 @@
+<div id="kt_app_toolbar" class="app-toolbar  pt-6 pb-2 ">
+
+    <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+        <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+            <div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+                <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+                    Liste des Web Services
+                </h1>
+               
+                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
+                    <li class="breadcrumb-item text-muted">
+                        <a class="text-muted text-hover-primary">
+                            Gestion Web Service </a>
+                    </li>
+                </ul>
+            </div>
+          
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <a (click)="ajoutapi()" class="btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                    data-bs-target="#kt_modal_create_campaign">
+                    <i class="ki-outline ki-plus fs-2"></i> Ajouter API
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+    <div id="kt_app_content_container" class="app-container  container-fluid ">
+        <div class="card">
+            <div class="card-header border-0 pt-6">
+                <div class="card-title">
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <i class="ki-outline ki-magnifier fs-3 position-absolute ms-3"></i> <input type="text"
+                            data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13"
+                            placeholder="Rechercher">
+                    </div>
+                </div>
+              
+                <div class="card-toolbar">
+                    <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered mw-650px">
+                            <div class="modal-content">
+                                <div class="modal-header" id="kt_modal_add_user_header">
+                                    <h2 class="fw-bold">Ajouter API</h2>
+                                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                        data-kt-users-modal-action="close">
+                                        <i class="ki-outline ki-cross fs-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="card-body py-4">
+                <table class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                            <th class="w-10px pe-2">
+                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                        data-kt-check-target="#kt_table_users .form-check-input" value="1" />
+                                </div>
+                            </th>
+                            <th class="min-w-100px">Code</th>
+                            <th class="min-w-100px">Libellé</th>
+                            <th class="min-w-100px">Description</th>
+                            <th class="min-w-100px">Date Création </th>
+                            <th class="min-w-100px">URL demo</th>
+                            <th class="min-w-100px">URL prod</th>
+                            <th class="text-center min-w-75px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 fw-semibold">
+                        <tr *ngFor="let p of apiList">
+                            <td>
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="1" />
+                                </div>
+                            </td>
+                            <td>
+                                <span>{{p.code_API}}</span>
+                            </td>
+                            <td>
+                                {{p.libelle_API}} </td>
+                            <td>
+                                {{p.description}}
+                            </td>
+                            <td> {{p.date_creation | date:'dd/MM/yyyy'}} </td>
+                            <td>
+                                {{p.url_demo}} </td>
+                            <td>
+                                {{p.url_prod}} </td>
+                            <td class="text-end">
+                                <a type="button"
+                                    class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm dropdown-toggle"
+                                    data-bs-toggle="dropdown">
+                                    Actions </a>
+                               
+                                <div
+                                    class="dropdown-menu menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-100px py-4">
+                                     <div class="dropdown-item menu-item px-3">
+                                        <a type="button" class="menu-link px-3" data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_4"class="menu-link px-3" (click)="consultApi(p)">
+                                            Consulter
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-item menu-item px-3">
+                                        <a class="menu-link px-3" (click)="modifApi(p.code_API)">
+                                            Modifier
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-item menu-item px-3">
+                                        <a type="button" class="menu-link px-3" data-bs-toggle="modal"
+                                            data-bs-target="#kt_modal_3" (click)="consultApi(p)">
+                                            Supprimer
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="kt_modal_4">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Consulter</h3>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+
+            <div class="modal-body" style="width: 750 px;">
+                <table style="gap: 15px;">
+                    <thead >
+                        <th class="min-w-75px">Code</th>
+                            <th class="min-w-75px">Libellé</th>
+                            <th class="min-w-75px">Date création</th>
+                            <th class="min-w-100px">URL Demo</th>
+                            <th class="min-w-100px">URL Prod</th>
+                            <th class="min-w-75px">Contrat</th>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{(apiItem) ? apiItem.code_API : null}}</td>
+                            <td>{{(apiItem) ? apiItem.libelle_API : null}}</td>
+                            <td>{{(apiItem) ? (apiItem.date_creation | date:'dd/MM/yyyy') : null}}</td>
+                            <td>{{(apiItem) ? apiItem.url_demo : null}}</td>
+                            <td>{{(apiItem) ? apiItem.url_prod : null}}</td>
+                            <td><i class="bi bi-filetype-pdf" (click)="generatePdf(apiItem)"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="kt_modal_3">
+    <div class="modal-dialog">
+        <div class="modal-content position-absolute">
+            <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;"><div class="swal2-icon-content">!</div></div>
+            <div class="text-center">
+                <h6><p>Êtes-vous sûr de vouloir supprimer cette API ?</p></h6>
+            </div>
+
+            <div class="text-center mb-4" style="display:block;" >
+                <div type="button" class="delete-button  btn fw-semibold btn-danger" data-bs-toggle="modal"
+                data-bs-target="#kt_modal_5" (click)="deleteApi(apiItem)">Supprimer</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="kt_modal_5">
+    <div class="modal-dialog">
+        <div class="modal-content position-absolute">
+<div aria-labelledby="swal2-title" aria-describedby="swal2-html-container" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: grid;"><button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button><ul class="swal2-progress-steps" style="display: none;"></ul><div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;"><div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+  <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+  <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+  <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+</div><img class="swal2-image" style="display: none;"><h2 class="swal2-title" id="swal2-title" style="display: none;"></h2><div class="swal2-html-container" id="swal2-html-container" style="display: block;">{{(apiItem) ? apiItem.libelle_API : null}} est supprimé!</div><input class="swal2-input" style="display: none;"><input type="file" class="swal2-file" style="display: none;"><div class="swal2-range" style="display: none;"><input type="range"><output></output></div><select class="swal2-select" style="display: none;"></select><div class="swal2-radio" style="display: none;"></div><label for="swal2-checkbox" class="swal2-checkbox" style="display: none;"><input type="checkbox"><span class="swal2-label"></span></label><textarea class="swal2-textarea" style="display: none;"></textarea><div class="swal2-validation-message" id="swal2-validation-message" style="display: none;"></div><div class="swal2-actions" style="display: flex;"><div class="swal2-loader"></div><button type="button" class="" aria-label="" style="display: inline-block;" (click)="isDeleted()">D'accord</button></div><div class="swal2-footer" style="display: none;"></div><div class="swal2-timer-progress-bar-container"><div class="swal2-timer-progress-bar" style="display: none;"></div></div></div>
+</div>
+</div>
+</div>

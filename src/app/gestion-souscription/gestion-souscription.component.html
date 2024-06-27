@@ -1,0 +1,46 @@
+<title>Souscription à une API</title>
+    <div class="conteneur">
+        <h1>Souscription d'une API</h1>
+        <form aclass="form" [formGroup]="sousForm" (ngSubmit)="addSous()">
+            <label for="code_api">Code API</label>
+            <input type="text" id="code_api" name="code_API" placeholder="Entrez le code API" formControlName="code_API">
+            <label for="code_application">Code Application</label>
+            <input type="text" id="code_application" name="code_application" placeholder="Entrez le code de l'application" formControlName="code_application">
+            <label for="type_autorisation">Type d'autorisation</label>
+            <select id="type_autorisation" formControlName="code_type_autorisation" name="code_type_autorisation">
+                <option value="">--Choisissez un type--</option>
+                <option value="TOTAL">TOTAL</option>
+                <option value="TEST">TEST</option>
+            </select>
+            <label for="date_creation">Date Création</label>
+            <input type="date" id="date_creation" name="date_creation" formControlName="date_creation">
+            <label for="date_expiration">Date Expiration</label>
+            <input type="date" id="date_expiration" name="date_expiration" formControlName="date_expiration">
+            <button type="submit" class="btn btn-primary">
+        Souscrire
+    </button>
+        </form>
+    </div>
+    
+    <div class="modal fade" tabindex="-1" id="kt_modal_1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                </div>
+    
+                <div class="modal-body">
+                    <h4><p>Voulez-vous souscrire l'API à l'application ?</p></h4>
+                </div>
+    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>

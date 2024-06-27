@@ -1,0 +1,70 @@
+<div class="card">
+      <div class="card-header" >
+          <h2 class="fw-bold" style="margin-top: 15px;">Ajouter Utilisateur</h2>
+          <div class="btn btn-icon btn-sm btn-active-icon-primary" style="margin-top: 15px;" data-kt-users-modal-action="close">
+              <i class="ki-outline ki-cross fs-1" (click)="gUser()"></i> </div>
+      </div>
+
+      <div class="card-body px-5 my-90">
+          <form  class="form" [formGroup]="userForm" (ngSubmit)="addUser()">
+              <div
+                  class="d-flex flex-column scroll-y px-5 px-lg-10"
+                  id="kt_modal_add_user_scroll"
+                  data-kt-scroll="true"
+                  data-kt-scroll-activate="true"
+                  data-kt-scroll-max-height="auto"
+                  data-kt-scroll-dependencies="#kt_modal_add_user_header"
+                  data-kt-scroll-wrappers="#kt_modal_add_user_scroll"
+                  data-kt-scroll-offset="300px">
+            
+<div class="fv-row mb-7">
+    <label class="required fw-semibold fs-6 mb-2">Nom / Prénom</label>
+    <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Entrez votre nom / prénom" formControlName="username"/>
+</div>
+
+<div class="fv-row mb-7">
+    <label class="required fw-semibold fs-6 mb-2">Matricule</label>
+    <input type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Entrez votre matricule" formControlName="matricule"/>
+</div>
+
+                  <div class="fv-row mb-7">
+                      <label class="required fw-semibold fs-6 mb-2">E-mail</label>
+                      <input type="email" name="user_email" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Entrez votre e-mail" formControlName="email"/>
+                  </div>
+
+                  <div class="fv-row mb-7">
+                    <label class="required fw-semibold fs-6 mb-2">Mot de passe</label>
+                    <input type="password" name="password" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Entrez votre mot de passe" formControlName="password"/>
+                </div>
+
+                  <div class="fv-row mb-7">
+                    <label class="required fw-semibold fs-6 mb-2">Téléphone</label>
+                    <input type="number" name="telephone" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Entrez votre numéro de téléphone" formControlName="telephone"/>
+                </div>
+ 
+                <div class="mb-5">
+                    <label class="required fw-semibold fs-6 mb-5">Role</label>
+                <div class="d-flex fv-row">
+                  <select id="role" formControlName="roles" class="form-control">
+                    <option *ngFor="let role of roles" [value]="role.name">{{ role.name }}</option>
+                  </select>
+                </div>
+                </div>
+              </div>
+
+              <div class="text-center pt-10">
+
+
+                <button type="reset" class="btn btn-light me-3" data-kt-users-modal-action="cancel">
+                    Annuler
+                </button>
+    
+                <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
+                    <span class="indicator-label">
+                        Valider
+                    </span>
+                </button>
+            </div>
+          </form>
+      </div>
+  </div>
